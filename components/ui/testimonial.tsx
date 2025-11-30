@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { TimelineContent } from "@/components/ui/timeline-animation"
@@ -36,18 +37,18 @@ function ClientFeedback() {
             className={"xl:text-4xl text-3xl font-medium"}
             animationNum={0}
             customVariants={revealVariants}
-            timelineRef={testimonialRef}
+            timelineRef={testimonialRef as React.RefObject<HTMLElement>}
           >
-            Trusted by Startups and the worlds's largest companies
+            Trusted by Startups and the world&apos;s largest companies
           </TimelineContent>
           <TimelineContent
             as="p"
             className={"mx-auto text-gray-500"}
             animationNum={1}
             customVariants={revealVariants}
-            timelineRef={testimonialRef}
+            timelineRef={testimonialRef as React.RefObject<HTMLElement>}
           >
-            Let's hear how hypershpere client's feels about our service
+            Let&apos;s hear how hypershpere client&apos;s feels about our service
           </TimelineContent>
         </article>
         <div className="lg:grid lg:grid-cols-3 gap-2 flex flex-col w-full lg:py-10 pt-10 pb-4 lg:px-10 px-4">
@@ -55,14 +56,14 @@ function ClientFeedback() {
             <TimelineContent
               animationNum={0}
               customVariants={revealVariants}
-              timelineRef={testimonialRef as any}
+              timelineRef={testimonialRef as React.RefObject<HTMLElement>}
               className="lg:flex-[7] flex-[6] flex flex-col justify-between relative bg-white overflow-hidden rounded-lg border border-gray-200 p-5"
             >
               <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:50px_56px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
               <article className="mt-auto">
                 <p>
-                  "Hypersphere has been a game-changer for us. Their service is
-                  top-notch and their team is incredibly responsive."
+                  &quot;Hypersphere has been a game-changer for us. Their service is
+                  top-notch and their team is incredibly responsive.&quot;
                 </p>
                 <div className="flex justify-between pt-5">
                   <div>
@@ -84,13 +85,13 @@ function ClientFeedback() {
             <TimelineContent
               animationNum={1}
               customVariants={revealVariants}
-              timelineRef={testimonialRef as any}
+              timelineRef={testimonialRef as React.RefObject<HTMLElement>}
               className="lg:flex-[3] flex-[4] lg:h-fit lg:shrink-0 flex flex-col justify-between relative bg-blue-600 text-white overflow-hidden rounded-lg border border-gray-200 p-5"
             >
               <article className="mt-auto">
                 <p>
-                  "We've seen incredible results with Hypersphere. Their
-                  expertise, dedication."
+                  &quot;We&apos;ve seen incredible results with Hypersphere. Their
+                  expertise, dedication.&quot;
                 </p>
                 <div className="flex justify-between pt-5">
                   <div>
@@ -112,13 +113,13 @@ function ClientFeedback() {
             <TimelineContent
               animationNum={2}
               customVariants={revealVariants}
-              timelineRef={testimonialRef as any}
+              timelineRef={testimonialRef as React.RefObject<HTMLElement>}
               className="flex flex-col justify-between relative bg-[#111111] text-white overflow-hidden rounded-lg border border-gray-200 p-5"
             >
               <article className="mt-auto">
                 <p className="2xl:text-base text-sm">
-                  "Their team is highly professional, and their innovative
-                  solutions have truly transformed the way we operate."
+                  &quot;Their team is highly professional, and their innovative
+                  solutions have truly transformed the way we operate.&quot;
                 </p>
                 <div className="flex justify-between items-end pt-5">
                   <div>
@@ -140,13 +141,13 @@ function ClientFeedback() {
             <TimelineContent
               animationNum={3}
               customVariants={revealVariants}
-              timelineRef={testimonialRef as any}
+              timelineRef={testimonialRef as React.RefObject<HTMLElement>}
               className="flex flex-col justify-between relative bg-[#111111] text-white overflow-hidden rounded-lg border border-gray-200 p-5"
             >
               <article className="mt-auto">
                 <p className="2xl:text-base text-sm">
-                  "We're extremely satisfied with Hypersphere. Their expertise
-                  and dedication have exceeded our expectations."
+                  &quot;We&apos;re extremely satisfied with Hypersphere. Their expertise
+                  and dedication have exceeded our expectations.&quot;
                 </p>
                 <div className="flex justify-between items-end pt-5">
                   <div>
@@ -166,13 +167,13 @@ function ClientFeedback() {
             <TimelineContent
               animationNum={4}
               customVariants={revealVariants}
-              timelineRef={testimonialRef as any}
+              timelineRef={testimonialRef as React.RefObject<HTMLElement>}
               className="flex flex-col justify-between relative bg-[#111111] text-white overflow-hidden rounded-lg border border-gray-200 p-5"
             >
               <article className="mt-auto">
                 <p className="2xl:text-base text-sm">
-                  "Their customer support is absolutely exceptional. They are
-                  always available, incredibly helpful."
+                  &quot;Their customer support is absolutely exceptional. They are
+                  always available, incredibly helpful.&quot;
                 </p>
                 <div className="flex justify-between items-end pt-5">
                   <div>
@@ -196,12 +197,12 @@ function ClientFeedback() {
             <TimelineContent
               animationNum={5}
               customVariants={revealVariants}
-              timelineRef={testimonialRef as any}
+              timelineRef={testimonialRef as React.RefObject<HTMLElement>}
               className="lg:flex-[3] flex-[4] flex flex-col justify-between relative bg-blue-600 text-white overflow-hidden rounded-lg border border-gray-200 p-5"
             >
               <article className="mt-auto">
                 <p>
-                  "Hypersphere has been a key partner in our growth journey."
+                  &quot;Hypersphere has been a key partner in our growth journey.&quot;
                 </p>
                 <div className="flex justify-between pt-5">
                   <div>
@@ -221,16 +222,16 @@ function ClientFeedback() {
             <TimelineContent
               animationNum={6}
               customVariants={revealVariants}
-              timelineRef={testimonialRef as any}
+              timelineRef={testimonialRef as React.RefObject<HTMLElement>}
               className="lg:flex-[7] flex-[6] flex flex-col justify-between relative bg-white overflow-hidden rounded-lg border border-gray-200 p-5"
             >
               <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:50px_56px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
               <article className="mt-auto">
                 <p>
-                  "Hypersphere has been a true game-changer for us. Their
+                  &quot;Hypersphere has been a true game-changer for us. Their
                   exceptional service, combined with their deep expertise and
                   commitment to excellence, has made a significant impact on our
-                  business."
+                  business.&quot;
                 </p>
                 <div className="flex justify-between pt-5">
                   <div>

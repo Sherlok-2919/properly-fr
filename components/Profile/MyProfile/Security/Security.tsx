@@ -59,7 +59,13 @@ const apiKeys = [
     { id: 2, name: "Development API Key", key: "pk_test_xxxxx...xxxxx", created: "Sep 1, 2024", lastUsed: "1 week ago" },
 ]
 
-export function SecuritySection() {
+import { User } from "@/lib/db"
+
+interface SecuritySectionProps {
+    user?: User | null;
+}
+
+export function SecuritySection({ user }: SecuritySectionProps) {
     const securityScore = 92
 
     return (

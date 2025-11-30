@@ -1,5 +1,5 @@
 import Dashboard from '@/components/Dashboard/dashboard/dashboard'
-import { getSession } from '@/lib/auth';
+import { getSession } from '@/app/actions/auth';
 import { redirect } from 'next/navigation';
 
 export default async function DashboardPage() {

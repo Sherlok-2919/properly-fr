@@ -115,7 +115,7 @@ export default function CTA() {
             </p>
 
             <p className="text-lg text-white/80 max-w-3xl mx-auto">
-              Whether it's operations, finances, or tenant management → With a tailored platform 
+              Whether it&apos;s operations, finances, or tenant management → With a tailored platform 
               from Properly, you effortlessly swing to the top of the property management space.
             </p>
 

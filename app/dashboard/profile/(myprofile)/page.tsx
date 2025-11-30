@@ -1,11 +1,8 @@
-import MyProfile from '@/components/Profile/MyProfile/MyProfile';
+import { DashboardContent } from "@/components/Profile/MyProfile/MyProfile"
+import { getSession } from "@/app/actions/auth"
 
-const ProfilePage = () => {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <MyProfile />
-    </div>
-  );
-};
+export default async function ProfilePage() {
+  const session = await getSession()
 
-export default ProfilePage;
+  return <DashboardContent activeSection="profile" user={session || undefined} />
+}

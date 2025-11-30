@@ -29,7 +29,7 @@ export default function LoginPage() {
                 setLoading(false)
             }
             // If success, the server action redirects, so we don't need to do anything here
-        } catch (loginError: any) {
+        } catch (loginError: unknown) {
             console.error('[Login] Login error:', loginError)
             setError('Failed to sign in')
             setLoading(false)

@@ -21,7 +21,13 @@ const integrations = [
   { id: 3, name: "QuickBooks", category: "Accounting", status: "available", icon: "Q" },
 ]
 
-export function SettingsSection() {
+import { User } from "@/lib/db"
+
+interface SettingsSectionProps {
+  user?: User | null;
+}
+
+export function SettingsSection({ user }: SettingsSectionProps) {
   return (
     <div className="space-y-4 sm:space-y-6 max-w-4xl">
       {/* Header */}
@@ -62,7 +68,7 @@ export function SettingsSection() {
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-muted-foreground flex-shrink-0" />
                   <div className="min-w-0">
-                    <p className="font-medium text-sm truncate">john.doe@email.com</p>
+                    <p className="font-medium text-sm truncate">{user?.email || 'john.doe@email.com'}</p>
                     <div className="flex items-center gap-2 flex-wrap">
                       <Badge variant="secondary" className="text-xs bg-emerald-50 text-emerald-700">
                         <Check className="w-3 h-3 mr-1" />

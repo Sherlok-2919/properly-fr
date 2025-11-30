@@ -67,7 +67,7 @@ ChartContainer.displayName = "Chart"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
-    ([_, config]) => config.theme || config.color
+    ([, configItem]) => configItem.theme || configItem.color
   )
 
   if (!colorConfig.length) {
@@ -102,6 +102,7 @@ const ChartTooltip = RechartsPrimitive.Tooltip
 
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   any
 >(
   (
@@ -176,6 +177,7 @@ const ChartTooltipContent = React.forwardRef<
       >
         {!nestLabel ? tooltipLabel : null}
         <div className="grid gap-1.5">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {payload.map((item: any, index: number) => {
             const key = `${nameKey || item.name || item.dataKey || "value"}`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
@@ -251,6 +253,7 @@ const ChartLegend = RechartsPrimitive.Legend
 
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   any
 >(
   (
@@ -272,6 +275,7 @@ const ChartLegendContent = React.forwardRef<
           className
         )}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         {payload.map((item: any) => {
           const key = `${nameKey || item.dataKey || "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)

@@ -5,6 +5,11 @@ import Link from 'next/link'
 import { Building2, Mail, Lock, User, ArrowRight, AlertCircle } from 'lucide-react'
 import { signup } from '@/app/actions/auth'
 
+// ...
+
+// const result = await signup(submitData)
+const result = { error: 'Signup disabled for debugging' }
+
 export default function SignupPage() {
     const [formData, setFormData] = useState({
         name: '',
@@ -35,22 +40,47 @@ export default function SignupPage() {
 
         try {
             const submitData = new FormData()
+            submitData.append('name', formData.name)
             submitData.append('email', formData.email)
             submitData.append('password', formData.password)
-            // displayName is not used in our simple ephemeral auth, but we keep the field in UI
 
             const result = await signup(submitData)
+            // const result = { error: 'Signup disabled for debugging' }
 
             if (result?.error) {
                 setError(result.error)
                 setLoading(false)
             }
             // On success, server action redirects
-        } catch (signupError: any) {
+        } catch (signupError: unknown) {
             console.error('Signup error:', signupError)
             setError('Failed to create account')
             setLoading(false)
         }
+    }
+
+    const calculatePasswordStrength = (password: string) => {
+        let strength = 0
+        if (password.length >= 8) strength += 1
+        if (/[A-Z]/.test(password)) strength += 1
+        if (/[0-9]/.test(password)) strength += 1
+        if (/[^A-Za-z0-9]/.test(password)) strength += 1
+        return strength
+    }
+
+    const passwordStrength = calculatePasswordStrength(formData.password)
+    const getStrengthColor = (strength: number) => {
+        if (strength === 0) return 'bg-gray-200'
+        if (strength <= 2) return 'bg-red-500'
+        if (strength === 3) return 'bg-yellow-500'
+        return 'bg-green-500'
+    }
+
+    const getStrengthText = (strength: number) => {
+        if (strength === 0) return ''
+        if (strength <= 2) return 'Weak'
+        if (strength === 3) return 'Medium'
+        return 'Strong'
     }
 
     return (
@@ -144,6 +174,24 @@ export default function SignupPage() {
                                         autoComplete="new-password"
                                     />
                                 </div>
+                                {formData.password && (
+                                    <div className="mt-2">
+                                        <div className="flex justify-between mb-1">
+                                            <span className="text-xs text-gray-500">Password strength</span>
+                                            <span className={`text-xs font-medium ${passwordStrength <= 2 ? 'text-red-500' :
+                                                passwordStrength === 3 ? 'text-yellow-500' : 'text-green-500'
+                                                }`}>
+                                                {getStrengthText(passwordStrength)}
+                                            </span>
+                                        </div>
+                                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                                            <div
+                                                className={`h-1.5 rounded-full transition-all duration-300 ${getStrengthColor(passwordStrength)}`}
+                                                style={{ width: `${(passwordStrength / 4) * 100}%` }}
+                                            ></div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             <div>

@@ -25,7 +25,8 @@ class OTPService {
 
   async sendSMSOTP(
     phoneNumber: string,
-    _recaptchaVerifier?: any
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _recaptchaVerifier?: unknown
   ): Promise<{ success: boolean; message: string; verificationId?: string }> {
     console.log(`[Mock OTP] Sending SMS OTP to ${phoneNumber}`)
     return {

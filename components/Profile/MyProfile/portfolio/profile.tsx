@@ -8,8 +8,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Camera, Mail, Phone, MapPin, Building2, Calendar, Edit2, Check, Shield, Star } from "lucide-react"
+import { updateProfileAction } from "@/app/actions/auth"
+import { UserData } from "../../MyProfile"
 
-export function ProfileSection() {
+export function ProfileSection({ user }: { user?: UserData }) {
+    const displayName = user?.name || "John Doe";
+    const [firstName, ...lastNameParts] = displayName.split(' ');
+    const lastName = lastNameParts.join(' ') || "";
+    const displayEmail = user?.email || "john.doe@email.com";
+    const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase();
+
     return (
         <div className="space-y-6 max-w-4xl">
             {/* Header */}
@@ -25,8 +33,8 @@ export function ProfileSection() {
                         {/* Avatar */}
                         <div className="relative group">
                             <Avatar className="w-24 h-24">
-                                <AvatarImage src="/professional-man-portrait.png" />
-                                <AvatarFallback className="text-2xl bg-primary/10 text-primary">JD</AvatarFallback>
+                                <AvatarImage src="" />
+                                <AvatarFallback className="text-2xl bg-primary/10 text-primary">{initials}</AvatarFallback>
                             </Avatar>
                             <button className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
                                 <Camera className="w-4 h-4" />
@@ -38,7 +46,7 @@ export function ProfileSection() {
                             <div className="flex items-start justify-between">
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <h2 className="text-xl font-semibold">John Doe</h2>
+                                        <h2 className="text-xl font-semibold">{displayName}</h2>
                                         <Badge className="bg-emerald-50 text-emerald-700 hover:bg-emerald-50">
                                             <Check className="w-3 h-3 mr-1" />
                                             Verified
@@ -59,7 +67,7 @@ export function ProfileSection() {
                                     </div>
                                     <div>
                                         <p className="text-muted-foreground text-xs">Email</p>
-                                        <p className="font-medium">john.doe@email.com</p>
+                                        <p className="font-medium">{displayEmail}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3 text-sm">
@@ -142,39 +150,43 @@ export function ProfileSection() {
                             <CardDescription>Update your personal details</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="firstName">First Name</Label>
-                                    <Input id="firstName" defaultValue="John" />
+                            <form action={async (formData) => {
+                                await updateProfileAction(formData);
+                            }}>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="firstName">First Name</Label>
+                                        <Input id="firstName" name="firstName" defaultValue={firstName} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="lastName">Last Name</Label>
+                                        <Input id="lastName" name="lastName" defaultValue={lastName} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="email">Email Address</Label>
+                                        <Input id="email" name="email" type="email" defaultValue={displayEmail} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="phone">Phone Number</Label>
+                                        <Input id="phone" name="phone" defaultValue="+61 400 123 456" />
+                                    </div>
+                                    <div className="space-y-2 md:col-span-2">
+                                        <Label htmlFor="address">Street Address</Label>
+                                        <Input id="address" name="address" defaultValue="123 George Street" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="city">City</Label>
+                                        <Input id="city" name="city" defaultValue="Sydney" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="postcode">Postcode</Label>
+                                        <Input id="postcode" name="postcode" defaultValue="2000" />
+                                    </div>
                                 </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="lastName">Last Name</Label>
-                                    <Input id="lastName" defaultValue="Doe" />
+                                <div className="flex justify-end mt-4">
+                                    <Button type="submit">Save Changes</Button>
                                 </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="email">Email Address</Label>
-                                    <Input id="email" type="email" defaultValue="john.doe@email.com" />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="phone">Phone Number</Label>
-                                    <Input id="phone" defaultValue="+61 400 123 456" />
-                                </div>
-                                <div className="space-y-2 md:col-span-2">
-                                    <Label htmlFor="address">Street Address</Label>
-                                    <Input id="address" defaultValue="123 George Street" />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="city">City</Label>
-                                    <Input id="city" defaultValue="Sydney" />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="postcode">Postcode</Label>
-                                    <Input id="postcode" defaultValue="2000" />
-                                </div>
-                            </div>
-                            <div className="flex justify-end">
-                                <Button>Save Changes</Button>
-                            </div>
+                            </form>
                         </CardContent>
                     </Card>
                 </TabsContent>
